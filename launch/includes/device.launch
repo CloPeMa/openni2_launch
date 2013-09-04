@@ -15,6 +15,7 @@
   <arg name="color_depth_synchronization" default="false" />
   <arg name="auto_exposure" default="true" />    
   <arg name="auto_white_balance" default="true" />    
+  <arg name="overwrite_device_id" default="true" />
 
   <arg name="respawn" default="false" />
   
@@ -27,7 +28,7 @@
   <node pkg="nodelet" type="nodelet" name="driver" 
         args="load openni2_camera/OpenNI2DriverNodelet $(arg manager)"
 	respawn="$(arg respawn)">
-    <param name="device_id" value="$(arg device_id)" />
+    <param name="device_id" value="$(arg device_id)" if="$(arg overwrite_device_id)" />
     <param name="rgb_camera_info_url"   value="$(arg rgb_camera_info_url)" />
     <param name="depth_camera_info_url" value="$(arg depth_camera_info_url)" />
     <param name="rgb_frame_id"   value="$(arg rgb_frame_id)" />
